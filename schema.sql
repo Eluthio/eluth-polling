@@ -1,0 +1,29 @@
+CREATE TABLE IF NOT EXISTS polls (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    channel_id VARCHAR(255) NOT NULL,
+    question VARCHAR(512) NOT NULL,
+    created_by VARCHAR(255) NOT NULL,
+    created_by_id VARCHAR(255) NOT NULL,
+    closes_at TIMESTAMP NULL,
+    closed_at TIMESTAMP NULL,
+    created_at TIMESTAMP NULL,
+    INDEX idx_channel (channel_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS poll_options (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    poll_id BIGINT UNSIGNED NOT NULL,
+    label VARCHAR(100) NOT NULL,
+    position TINYINT UNSIGNED NOT NULL DEFAULT 0,
+    FOREIGN KEY (poll_id) REFERENCES polls(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS poll_votes (
+    poll_id BIGINT UNSIGNED NOT NULL,
+    voter_id VARCHAR(255) NOT NULL,
+    option_id BIGINT UNSIGNED NOT NULL,
+    voted_at TIMESTAMP NULL,
+    PRIMARY KEY (poll_id, voter_id),
+    FOREIGN KEY (poll_id) REFERENCES polls(id) ON DELETE CASCADE,
+    FOREIGN KEY (option_id) REFERENCES poll_options(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

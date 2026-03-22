@@ -1,0 +1,15 @@
+{
+  "name": "Polls",
+  "slug": "polls",
+  "version": "1.0.0",
+  "min_server_version": "1.2.2",
+  "tier": "official",
+  "zones": [
+    "input"
+  ],
+  "settings": [],
+  "role_permissions": [
+    { "key": "poll.create",   "label": "Create and close polls" },
+    { "key": "poll.moderate", "label": "Close any poll (including others')" }
+  ]
+}

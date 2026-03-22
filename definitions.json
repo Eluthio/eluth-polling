@@ -1,0 +1,14 @@
+{
+  "name": "Polls",
+  "slug": "polls",
+  "description": "Create timed or open-ended polls with up to 10 options. Streamers and moderators create polls; chat votes live. Results update in real time via WebSocket.",
+  "author": "Eluthio",
+  "tier": "official",
+  "min_server_version": "1.2.2",
+  "max_server_version": null,
+  "tags": ["interaction", "voting", "community"],
+  "recommended": true,
+  "changelog": {
+    "1.0.0": "Initial release — timed and manual polls, live vote counts, role-based create/moderate permissions, WebSocket updates"
+  }
+}
