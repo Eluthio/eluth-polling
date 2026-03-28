@@ -256,14 +256,14 @@ async function fetchPoll() {
     if (!props.channelId) return
     loading.value = true
     try {
-        const res = await fetch(`${base()}/api/plugins/polls/active?channel_id=${props.channelId}`, {
+        const res = await fetch(`${base()}/plugins/polls/active?channel_id=${props.channelId}`, {
             headers: { Authorization: 'Bearer ' + props.authToken, Accept: 'application/json' },
         })
         if (res.ok) {
             const data = await res.json()
             poll.value = data.poll
         }
-    } finally {
+    } catch {} finally {
         loading.value = false
     }
 }
@@ -274,7 +274,7 @@ async function vote(opt) {
     if (!poll.value?.is_active || voting.value !== null) return
     voting.value = opt.id
     try {
-        const res = await fetch(`${base()}/api/plugins/polls/${poll.value.id}/vote`, {
+        const res = await fetch(`${base()}/plugins/polls/${poll.value.id}/vote`, {
             method: 'POST',
             headers: headers(),
             body: JSON.stringify({ option_id: opt.id }),
@@ -292,7 +292,7 @@ async function closePoll() {
     if (!poll.value || closing.value) return
     closing.value = true
     try {
-        const res = await fetch(`${base()}/api/plugins/polls/${poll.value.id}/close`, {
+        const res = await fetch(`${base()}/plugins/polls/${poll.value.id}/close`, {
             method: 'POST',
             headers: headers(),
         })
