@@ -1,8 +1,8 @@
 {
   "name": "Polls",
   "slug": "polls",
-  "version": "1.0.2",
-  "min_server_version": "1.2.2",
+  "version": "1.0.3",
+  "min_server_version": "1.5.5",
   "tier": "official",
   "entry": "index.js",
   "zones": [
